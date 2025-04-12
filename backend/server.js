@@ -17,7 +17,7 @@ connectCloudinary();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://healthcare-management-system-gamma.vercel.app",
+    origin: "https://healthcare-management-system-gamma.vercel.app", // Replace with your frontend URL
     credentials: true,
   })
 );
@@ -31,4 +31,5 @@ app.get("/", (req, res) => {
   res.send("API Working");
 });
 
-app.listen(port, () => console.log(`Server started on PORT:${port}`));
+// Start the server
+app.listen(port, () => console.log(`Server started on PORT:${port}`));  // Corrected line
