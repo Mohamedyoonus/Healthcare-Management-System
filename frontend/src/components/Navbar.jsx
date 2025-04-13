@@ -4,8 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { motion, AnimatePresence } from "framer-motion";
 
-const MotionNavLink = motion(NavLink);
-
+const MotionNavLink = motion.create(NavLink);
 const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
