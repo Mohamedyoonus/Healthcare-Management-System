@@ -22,6 +22,7 @@ const Login = () => {
     try {
       const endpoint =
         state === "Sign Up" ? "/api/user/register" : "/api/user/login";
+
       const payload =
         state === "Sign Up"
           ? user
@@ -48,85 +49,110 @@ const Login = () => {
   }, [token, navigate]);
 
   return (
-    <motion.form
-      onSubmit={onSubmitHandler}
-      className="min-h-[80vh] flex items-center px-4"
-      initial={{ opacity: 0, y: 50 }}
+    // Fits EXACTLY between Navbar & Footer
+    <motion.div
+      className="
+        flex-1
+        flex items-center justify-center
+        px-4
+        py-6 sm:py-8
+      "
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
+      transition={{ duration: 0.4 }}
     >
-      <motion.div
-        key={state}
-        className="flex flex-col gap-4 m-auto p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-[#5E5E5E] text-sm shadow-lg bg-white"
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeInOut" }}
+      <motion.form
+        onSubmit={onSubmitHandler}
+        className="
+          flex flex-col
+          gap-4 sm:gap-3
+          w-full max-w-[360px]
+          p-6 sm:p-5
+          border rounded-xl
+          text-[#5E5E5E] text-sm
+          shadow-md bg-white
+        "
       >
-        <motion.p
-          className="text-2xl font-semibold"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-        >
+        <p className="text-xl font-semibold text-center">
           {state === "Sign Up" ? "Create Account" : "Login"}
-        </motion.p>
-        <p>
+        </p>
+
+        <p className="text-xs text-center">
           Please {state === "Sign Up" ? "sign up" : "log in"} to book an
           appointment
         </p>
 
         {state === "Sign Up" && (
-          <div className="w-full">
+          <div>
             <p>Full Name</p>
-            <motion.input
+            <input
               onChange={onChangeHandler}
               value={user.name}
               name="name"
-              className="border border-[#DADADA] rounded w-full p-2 mt-1 focus:ring-2 focus:ring-primary focus:outline-none transition-all"
-              type="text"
               required
-              whileFocus={{ scale: 1.01 }}
+              className="
+                border border-[#DADADA]
+                rounded w-full
+                p-2 sm:p-1.5
+                mt-1
+                focus:ring-2 focus:ring-primary focus:outline-none
+              "
             />
           </div>
         )}
 
-        <div className="w-full">
+        <div>
           <p>Email</p>
-          <motion.input
+          <input
             onChange={onChangeHandler}
             value={user.email}
             name="email"
-            className="border border-[#DADADA] rounded w-full p-2 mt-1 focus:ring-2 focus:ring-primary focus:outline-none transition-all"
             type="email"
             required
-            whileFocus={{ scale: 1.01 }}
+            className="
+              border border-[#DADADA]
+              rounded w-full
+              p-2 sm:p-1.5
+              mt-1
+              focus:ring-2 focus:ring-primary focus:outline-none
+            "
           />
         </div>
 
-        <div className="w-full">
+        <div>
           <p>Password</p>
-          <motion.input
+          <input
             onChange={onChangeHandler}
             value={user.password}
             name="password"
-            className="border border-[#DADADA] rounded w-full p-2 mt-1 focus:ring-2 focus:ring-primary focus:outline-none transition-all"
             type="password"
             required
-            whileFocus={{ scale: 1.01 }}
+            className="
+              border border-[#DADADA]
+              rounded w-full
+              p-2 sm:p-1.5
+              mt-1
+              focus:ring-2 focus:ring-primary focus:outline-none
+            "
           />
         </div>
 
-        <motion.button
+        <button
           type="submit"
-          className="bg-primary text-white w-full py-2 my-2 rounded-md text-base shadow-md"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="
+            bg-primary text-white
+            w-full
+            py-2 sm:py-1.5
+            mt-2
+            rounded-md
+            text-sm
+            shadow
+          "
         >
           {state === "Sign Up" ? "Create account" : "Login"}
-        </motion.button>
+        </button>
 
-        <p>
+        <p className="text-xs text-center mt-1">
           {state === "Sign Up"
             ? "Already have an account?"
             : "Create a new account?"}
@@ -137,8 +163,8 @@ const Login = () => {
             {state === "Sign Up" ? "Login here" : "Click here"}
           </span>
         </p>
-      </motion.div>
-    </motion.form>
+      </motion.form>
+    </motion.div>
   );
 };
 
